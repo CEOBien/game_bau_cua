@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bầu Cua Tôm Cá</title>
+    
+</head>
+<body>
+    <h1>Bầu Cua Tôm Cá</h1>
+    <div class="dice">
+        <div class="face" id="cube1">
+          <img src="game_bau_cua/bau.jpg" alt="Bầu" />
+        </div>
+        <div class="face" id="cube2">
+          <img src="game_bau_cua/cua.jpg" alt="Cua" />
+        </div>
+        <div class="face" id="cube3">
+          <img src="game_bau_cua/tom.jpg" alt="Tôm" />
+        </div>
+        
+    </div>
+    <div class="button-lay">
+        <button onclick="startRolling()">Lắc nào</button>
+    </div>
+    <div class="dice-2">
+        <div class="face-2">
+          <img src="game_bau_cua/bau.jpg" alt="Bầu" />
+        </div>
+        <div class="face-2">
+          <img src="game_bau_cua/cua.jpg" alt="Cua" />
+        </div>
+        <div class="face-2">
+          <img src="game_bau_cua/tom.jpg" alt="Tôm" />
+        </div>
+        <div class="face-2">
+          <img src="game_bau_cua/ca.jpg" alt="Cá" />
+        </div>
+        <div class="face-2">
+          <img src="game_bau_cua/ga.jpg" alt="Nai" />
+        </div>
+        <div class="face-2">
+          <img src="game_bau_cua/nai.jpg" alt="Gà" />
+        </div>
+    </div>
+      <style>
+        .dice {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          width: 200px;
+          margin: 0 auto;
+          border: 1px solid black;
+          border-radius: 10px;
+          padding: 10px;
+        }
+        .dice-2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 40rem;
+            margin: 0 auto;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .face-2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .button-lay{
+            text-align: center;
+            margin-top: 10px;
+        }
+        button{
+            height: 50px;
+            width: 100px;
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+        }
+        .face {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+          border-radius: 5px;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          height: 60px;
+          width: 60px;
+        }
+        h1{
+            text-align: center;
+            font-size: 3rem;
+            color: red;
+        }
+      
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .highlight {
+          animation: highlight 0.3s ease-in-out; /* Adjust the animation duration */
+        }
+
+        @keyframes highlight {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+      </style>
+    
+
+    <script>
+        var rollingInterval;
+        const history = [];
+        function startRolling() {
+            rollingInterval = setInterval(rollDice, 300); // Adjust the interval duration
+            setTimeout(stopRolling, 5000); // Adjust the total duration
+         
+           
+        }
+
+        function stopRolling() {
+            var result = history.slice(-3)
+            clearInterval(rollingInterval);
+            alert(`Chúc mừng các báo con đã đặt ${result} \nCòn mấy chế không trúng là do em đen thôi`)
+        }
+       
+        function rollDice() {
+            var dice = ["bau", "cua", "tom", "ca", "nai", "ga"];
+            
+            for (var i = 1; i <= 3; i++) {
+                var randomIndex = Math.floor(Math.random() * dice.length);
+                var result = dice[randomIndex];
+                history.push(result)
+                var cubeElement = document.getElementById("cube" + i);
+                var imgElement = cubeElement.querySelector('img');
+
+                imgElement.src = `game_bau_cua/${result}.jpg`;
+
+                // Trigger reflow and then add class to initiate the animation
+                cubeElement.offsetHeight;
+                cubeElement.classList.add("highlight");
+            }
+            
+        }
+    </script>
+</body>
+</html>

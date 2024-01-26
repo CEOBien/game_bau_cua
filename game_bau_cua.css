@@ -1,0 +1,19 @@
+#game-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+button {
+    display: block;
+    margin: 50px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+}
